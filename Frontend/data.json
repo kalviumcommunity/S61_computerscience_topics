@@ -1,0 +1,10 @@
+
+{
+    
+    "id": 1,
+    "topic": "Algorithms and Data Structures",
+    "description": "Algorithms are step-by-step procedures for solving problems, while data structures organize and store data. Examples: arrays, linked lists, sorting algorithms, and graph algorithms",
+    "RequiredKnowledge": ["Learn how to solve problems step by step.", "Understand basic data organization (like lists) and common methods (like sorting)."] ,
+    "Popularity":"8 / 10",
+    "LevelOfHardness":"7/10"
+}
