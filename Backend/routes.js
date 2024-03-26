@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const scienceData = require('./model/model');
+const validateSchema = require('./model/validateEntity');
 
 router.post("/add", async (req, res) => {
     const dataArray = req.body;
+    const { error } = validateSchema.validate(dataArray);
+    if (error){ 
+    return res.status(400).json({error: error.details[0].message});
+    }
     try {
         const insertedData = await scienceData.create(dataArray);
         res.status(201).json({ message: "Science data posted successfully", data: insertedData });
@@ -40,6 +45,10 @@ router.delete("/remove/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
     const dataId = req.params.id;
     const updatedData = req.body;
+    const { error } = validateSchema.validate(updatedData);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
     try {
         const updatedDataItem = await scienceData.findByIdAndUpdate(dataId, updatedData, { new: true });
         if (!updatedDataItem) {
